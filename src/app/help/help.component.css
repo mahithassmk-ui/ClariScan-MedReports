@@ -1,0 +1,153 @@
+.help-page {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 14px 20px 12px;
+  background:
+    radial-gradient(circle at 8% 12%, #eaf3ff 0%, transparent 32%),
+    radial-gradient(circle at 88% 86%, #e8fff1 0%, transparent 32%),
+    linear-gradient(145deg, #fbfdff 0%, #f4f9ff 100%);
+  color: #1b314f;
+}
+
+.help-content {
+  width: 100%;
+}
+
+.help-hero {
+  width: min(1040px, 96vw);
+  margin: 0 auto 10px;
+  border: 1px solid #d8e5f8;
+  border-radius: 16px;
+  padding: 22px;
+  background: linear-gradient(120deg, #ffffff 0%, #f1f7ff 100%);
+  box-shadow: 0 12px 28px rgba(17, 46, 85, 0.08);
+}
+
+.help-hero h1 {
+  margin: 0;
+  color: #113b67;
+}
+
+.help-hero p {
+  margin: 8px 0 0;
+  color: #4a6483;
+}
+
+.steps-grid,
+.info-grid {
+  width: min(1040px, 96vw);
+  margin: 0 auto;
+  display: grid;
+  gap: 12px;
+}
+
+.steps-grid {
+  grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+  margin-bottom: 10px;
+}
+
+.step-card,
+.info-card {
+  background: #ffffff;
+  border: 1px solid #d8e5f8;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 10px 24px rgba(17, 46, 85, 0.07);
+}
+
+.step-index {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 12px;
+  color: #0f5dad;
+  background: #e8f2ff;
+  padding: 4px 8px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+
+.step-card h3 {
+  margin: 0 0 6px;
+  color: #16426f;
+}
+
+.step-card p {
+  margin: 0;
+  color: #46617f;
+}
+
+.info-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.info-card h2 {
+  margin: 0 0 8px;
+  color: #16426f;
+}
+
+ol, ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+li, p {
+  line-height: 1.45;
+}
+
+.safety-card {
+  background: linear-gradient(120deg, #fff8f8 0%, #fff2f2 100%);
+  border-color: #ffd0d0;
+}
+
+.contact-footer {
+  margin-top: auto;
+  width: 100%;
+  background: linear-gradient(125deg, #123c6b 0%, #0f5a84 45%, #0f785f 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 12px 28px rgba(11, 32, 63, 0.24);
+}
+
+.footer-inner {
+  width: min(1040px, 96vw);
+  margin: 0 auto;
+  color: #eef7ff;
+}
+
+.footer-inner h2 {
+  margin: 0 0 8px;
+  color: #ffffff;
+}
+
+.footer-inner p {
+  margin: 0 0 8px;
+  color: #c8e2ff;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.contact-chip {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.contact-chip h3 {
+  margin: 0 0 6px;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.contact-chip a {
+  color: #d8f1ff;
+  text-decoration: none;
+  word-break: break-word;
+}

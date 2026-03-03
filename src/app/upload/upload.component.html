@@ -1,0 +1,65 @@
+<main class="page">
+ 
+  <section class="hero">
+    <h1>Medical Reports, Simplified for You.</h1>
+    <p>Clarity Before Consultation</p>
+  </section>
+
+  <section class="toolbar">
+    <label class="file-picker">
+      <input type="file" (change)="onFileSelected($event)" />
+      <span>{{ fileName || 'Choose PDF or image' }}</span>
+    </label>
+
+    <button class="primary-btn" (click)="submitReport()" [disabled]="loading || !selectedFile">
+      {{ loading ? 'Processing...' : 'Generate Simplified Report' }}
+    </button>
+  </section>
+
+  <p *ngIf="loading" class="status">Reading report and generating simplified summary...</p>
+
+  <section class="workspace">
+    <article class="panel preview-panel">
+      <h2>Original File Preview</h2>
+      <div class="preview-body" *ngIf="selectedFile; else noPreview">
+        <img *ngIf="previewType === 'image'" [src]="previewUrl" alt="Uploaded report preview" />
+        <iframe *ngIf="previewType === 'pdf'" [src]="previewUrl" title="PDF Preview"></iframe>
+        <div *ngIf="previewType === 'none'" class="preview-placeholder">
+          Preview is supported for PDF and image files.
+        </div>
+      </div>
+      <ng-template #noPreview>
+        <div class="preview-placeholder">Upload a report to preview it here.</div>
+      </ng-template>
+    </article>
+
+    <article class="panel report-panel">
+      <h2>{{ reportTitle || 'Simplified Report' }}</h2>
+
+      <div class="risk-alert" *ngIf="simplifiedText.trim()" [ngClass]="'risk-' + riskLevel">
+        <div class="risk-label">{{ riskLabel }}</div>
+        <div class="risk-message">{{ riskMessage }}</div>
+      </div>
+
+      <div *ngIf="reportSections.length > 0; else rawOutput" class="sections-grid">
+        <section class="section-card" [ngClass]="sectionTone(section.title)" *ngFor="let section of reportSections">
+          <h3>{{ section.title }}</h3>
+          <p *ngFor="let para of section.paragraphs">{{ para }}</p>
+          <ul *ngIf="section.bullets.length > 0">
+            <li *ngFor="let bullet of section.bullets">{{ bullet }}</li>
+          </ul>
+        </section>
+      </div>
+
+      <ng-template #rawOutput>
+        <pre class="result-text">{{ simplifiedText || 'Your simplified report will appear here after upload.' }}</pre>
+      </ng-template>
+
+      <div class="download-bar">
+        <button class="download-btn" (click)="downloadCurrentViewPdf()" [disabled]="!simplifiedText.trim()">
+          Download Current View as PDF
+        </button>
+      </div>
+    </article>
+  </section>
+</main>
