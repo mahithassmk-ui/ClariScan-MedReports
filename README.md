@@ -9,8 +9,6 @@ Users upload a report and our application extracts text and simplifies it into p
   6. A safety note for patients using our application
 The generated summary can be downloaded or printed for later review or to share during a doctor consultation 
 
-# EXAMPLES FROM OUR APPLICATION 
-
 # FEATURES
 1. Upload PDF/Images of radiology reports
 2. OCR + text extraction (handles scanned PDFs and images)
