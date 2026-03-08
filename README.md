@@ -1,12 +1,12 @@
 # CLARISCAN
 Our application is a patient-friendly web app that converts complex radiology reports which is in PDF or image format into clear and understandable summaries
 Users upload a report and our application extracts text and simplifies it into patient-friendly language,including a risk indicator and a structured report with:
-  1.Why was the scan done
-  2.Relevant background
-  3.Main findings in simple terms
-  4.Overall summary
-  5.Questions patientscan ask their doctor
-  6.A safety note for patients using our application
+  1. Why was the scan done
+  2. Relevant background
+  3. Main findings in simple terms
+  4. Overall summary
+  5. Questions patientscan ask their doctor
+  6. A safety note for patients using our application
 The generated summary can be downloaded or printed for later review or to share during a doctor consultation 
 
 # EXAMPLES FROM OUR APPLICATION 
@@ -20,11 +20,11 @@ The generated summary can be downloaded or printed for later review or to share 
 6. Download and Print the simplified summary
 
 # Tech Stack
-Frontend - Angular
-Backend - Python FastAPI
-OCR and parsing - PDF text extraction using pdfplumer
-Scanned PDF/images -pytesseract
-LLM Integration - Ollama API
+1. Frontend - Angular
+2. Backend - Python FastAPI
+3. OCR and parsing - PDF text extraction using pdfplumer
+4 Scanned PDF/images -pytesseract
+5. LLM Integration - Ollama API
 
 # Prerequisites
 1. Node.js v20+ and npm installed
