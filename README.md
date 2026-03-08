@@ -30,7 +30,7 @@ LLM Integration - Ollama API
 1. Node.js v20+ and npm installed
 2. Python version 3.10+
 3. Tesseract OCR installed
-   Current path given in the codebase is C:\Users\HP\AppData\Local\Programs\Tesseract-OCR\tesseract.exe.If your Tesseract is installed elsewhere,update the path in main.py file]
+   _[Current path given in the codebase is C:\Users\HP\AppData\Local\Programs\Tesseract-OCR\tesseract.exe.If your Tesseract is installed elsewhere,update the path in main.py file]_
 4. Optional : Ollama running locally
 
 # Backend Setup
@@ -45,7 +45,7 @@ Create a .env fil which includes
 
 3. To rn the backend , use command python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000. The API will be available at http://localhost:8000
 4. Optional : Start ollama server with the command ollama serve and pull the required model using the command ollama pull llama3.2:1b
-[If the pull responds OK , the model is available locally . Keep the OLLAMA_MODEL = llama3.2:1b and OLLAMA_URL = http://127.0.0.1:11434 in .env]
+_[If the pull responds OK , the model is available locally . Keep the OLLAMA_MODEL = llama3.2:1b and OLLAMA_URL = http://127.0.0.1:11434 in .env]_
 
 # Frontend Setup
 
