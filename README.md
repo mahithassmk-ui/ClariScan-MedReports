@@ -1,21 +1,19 @@
 # CLARISCAN
-Our application is a patient-friendly web app that converts complex radiology reports which is in PDF or image format into clear and understandable summaries
-Users upload a report and our application extracts text and simplifies it into patient-friendly language,including a risk indicator and a structured report with:
-  1. Why was the scan done
-  2. Relevant background
-  3. Main findings in simple terms
-  4. Overall summary
-  5. Questions patientscan ask their doctor
-  6. A safety note for patients using our application
-The generated summary can be downloaded or printed for later review or to share during a doctor consultation 
+Our application is a patient-friendly web app that converts complex radiology reports which is in PDF or image format into clear and understandable summaries.ClariScan is designed to inform and prepare patients—it does not diagnose medical conditions or replace professional medical advice.
+Users can upload radiology reports in PDF or image format. The application extracts the report text using OCR when necessary and generates a structured explanation in plain language, helping patients better understand their report before consulting their healthcare provider.
 
 # Features
-1. Upload PDF/Images of radiology reports
-2. OCR + text extraction (handles scanned PDFs and images)
-3. Patient-friendly summary generated via LLM (Ollama)
-4. Risk indicator (non-clinical , adviosry)
-5. Structured sections(why scan,background findings,summary,questions to ask to doctor,safety note)
-6. Download and Print the simplified summary
+1. Upload radiology/Lab reports in PDF or image format.
+2. OCR-based text extraction for scanned PDFs and images.
+3. AI-generated patient-friendly explanations using an LLM.
+4. Structured report containing:
+    a. Why the scan was performed (when available)
+    b. Main findings explained in simple language
+    c. Overall report summary
+    d. Suggested questions to ask the doctor
+    e. Safety note reminding users to consult a healthcare professional
+6. Advisory risk indicator to highlight findings that may warrant discussion with a healthcare provider (non-diagnostic).
+7. Download or print the simplified report for future reference or to bring to a medical consultation.
 
 # Tech Stack
 1. Frontend - Angular
@@ -28,22 +26,20 @@ The generated summary can be downloaded or printed for later review or to share 
 1. Node.js v20+ and npm installed
 2. Python version 3.10+
 3. Tesseract OCR installed
-   _[Current path given in the codebase is C:\Users\HP\AppData\Local\Programs\Tesseract-OCR\tesseract.exe.If your Tesseract is installed elsewhere,update the path in main.py file]_
-4. Optional : Ollama running locally
-
+   _[Replace the Tesseract path with the existing one with your resseract path once installed in main.py file]_
+4. Ollama
+   
 # Backend Setup
 ### 1.Installed Dependencies
-pip install -r requirements.txt
+pip install -r requirements.txt [make sure you are inside backend folder. dont forget to do cd backend]
+3. Start ollama server :
+    a. make sure you are inside ollama repository
+    b. Run command : .\ollama.exe pull llama3.2:1b
+    c. Run command : .\ollama.exe serve
+    d. Verify if the ollama is running using the command : .\ollama.exe list
 
-### 2.Environment Variables
-Create a .env fil which includes
-  1. OLLAMA_API_KEY
-  2. OLLAMA_MODE
-  3. OLLAMA_URL
-
-3. To rn the backend , use command python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000. The API will be available at http://localhost:8000
-4. Optional : Start ollama server with the command ollama serve and pull the required model using the command ollama pull llama3.2:1b
-_[If the pull responds OK , the model is available locally . Keep the OLLAMA_MODEL = llama3.2:1b and OLLAMA_URL = http://127.0.0.1:11434 in .env]_
+ 4.To run the backend : __[ make sure you are inside backend folder. dont forget to do cd backend]
+   Run command:  python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000. _[The API will be available at http://localhost:8000]_
 
 # Frontend Setup
 
@@ -52,6 +48,9 @@ npm install
 
 ### To run the application
 ng serve
+
+###Note 
+Make sure you run Backend commands and Frontend commands in seperate terminals
 
 # Limitations
 OCR quality depends on the scan clarity , handwritten texts may be inaccurate.Please make sure that the uploaded PDF or image of radiology reports is a clear image and not a blurred image.
