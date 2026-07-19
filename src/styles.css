@@ -1,1 +1,109 @@
 /* You can add global styles to this file, and also import other style files */
+
+@media print {
+  html,
+  body {
+    height: auto !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+  }
+
+  .app-navbar,
+  .sidebar,
+  .sidebar-brand,
+  .sidebar-nav,
+  .preview-panel,
+  .preview-holder,
+  .primary-btn,
+  .secondary-btn,
+  .back-btn,
+  button {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  .app-main {
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .result-page {
+    visibility: visible !important;
+    position: static !important;
+    width: auto !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  .result-page,
+  .result-page * {
+    visibility: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  .result-grid {
+    display: block !important;
+    gap: 12px !important;
+  }
+
+  .panel-card,
+  .preview-holder,
+  .summary-panel,
+  .result-header,
+  .risk-alert,
+  .result-text {
+    box-shadow: none !important;
+    border: 1px solid #d1d5db !important;
+    background-color: #ffffff !important;
+    color: #1f2937 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  .section-card {
+    box-shadow: none !important;
+    border: 1px solid #d1d5db !important;
+    color: #1f2937 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  .preview-holder {
+    background: #f8fafc !important;
+  }
+
+  .section-card.tone-blue {
+    background: #eff6ff !important;
+  }
+
+  .section-card.tone-amber {
+    background: #fffbeb !important;
+  }
+
+  .section-card.tone-cyan {
+    background: #ecfeff !important;
+  }
+
+  .section-card.tone-red {
+    background: #fef2f2 !important;
+  }
+
+  .section-card.tone-green {
+    background: #ecfdf5 !important;
+  }
+
+  .panel-header,
+  .summary-content {
+    padding: 0 !important;
+  }
+}

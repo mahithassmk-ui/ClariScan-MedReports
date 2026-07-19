@@ -1,16 +1,24 @@
-<header class="app-nav">
+<header class="app-navbar">
   <div class="brand">
-   
-    <div>
-      <strong>ClariScan</strong>
-      <small>Patient Clarity Platform</small>
+    <div class="brand-mark">C</div>
+    <div class="brand-copy">
+      <strong>clariscan</strong>
+      <small>Your Report Companion</small>
     </div>
   </div>
-
-  <nav class="links">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-    <a routerLink="/help" routerLinkActive="active">Help</a>
-  </nav>
 </header>
 
-<router-outlet></router-outlet>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+    </div>
+    <nav class="sidebar-nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">My reports</a>
+      <a routerLink="/help" routerLinkActive="active">How it works</a>
+    </nav>
+  </aside>
+
+  <main class="app-main">
+    <router-outlet></router-outlet>
+  </main>
+</div>

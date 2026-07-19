@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { timeout } from 'rxjs';
 
 interface ReportSection {
@@ -30,13 +31,15 @@ export class UploadComponent implements OnDestroy {
   riskMessage = 'No obvious urgent terms detected in this summary.';
   previewType: PreviewType = 'none';
   previewUrl = '';
+  previewDataUrl = '';
   fileName = '';
   private readonly apiUrl = 'http://127.0.0.1:8000/simplify';
   private readonly requestTimeoutMs = 180000;
 
   constructor(
     private http: HttpClient,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnDestroy(): void {
@@ -52,14 +55,16 @@ export class UploadComponent implements OnDestroy {
     this.reportSections = [];
     this.setRiskFromText('');
     this.setupPreview();
+    this.readPreviewData();
   }
 
-  submitReport(): void {
+  async submitReport(): Promise<void> {
     if (!this.selectedFile) return;
 
     this.loading = true;
     const formData = new FormData();
     formData.append('file', this.selectedFile, this.selectedFile.name);
+    await this.readPreviewData();
 
     this.http.post<{ simplified_text: string }>(this.apiUrl, formData)
       .pipe(timeout(this.requestTimeoutMs))
@@ -67,15 +72,17 @@ export class UploadComponent implements OnDestroy {
         next: (res) => {
           this.simplifiedText = (res?.simplified_text || '[Empty response from backend]').trim();
           this.parseSimplifiedText();
+          this.storeReportData();
           this.loading = false;
-          this.cdr.detectChanges();
+          this.router.navigate(['/result']);
         },
         error: (err) => {
           console.error(err);
           this.simplifiedText = '[Request failed/timed out. Verify backend is running on 127.0.0.1:8000 and Ollama is running with the configured model.]';
           this.parseSimplifiedText();
+          this.storeReportData();
           this.loading = false;
-          this.cdr.detectChanges();
+          this.router.navigate(['/result']);
         }
       });
   }
@@ -119,6 +126,27 @@ export class UploadComponent implements OnDestroy {
 
   private revokePreviewUrl(): void {
     if (this.previewUrl) URL.revokeObjectURL(this.previewUrl);
+  }
+
+  private readPreviewData(): Promise<void> {
+    return new Promise((resolve) => {
+      if (!this.selectedFile) {
+        this.previewDataUrl = '';
+        resolve();
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.previewDataUrl = reader.result as string;
+        resolve();
+      };
+      reader.onerror = () => {
+        this.previewDataUrl = '';
+        resolve();
+      };
+      reader.readAsDataURL(this.selectedFile);
+    });
   }
 
   private parseSimplifiedText(): void {
@@ -182,6 +210,21 @@ export class UploadComponent implements OnDestroy {
     this.riskLevel = 'low';
     this.riskLabel = 'Low Priority';
     this.riskMessage = 'No urgency required, but still review with your doctor.';
+  }
+
+  private storeReportData(): void {
+    const payload = {
+      simplifiedText: this.simplifiedText,
+      reportTitle: this.reportTitle,
+      reportSections: this.reportSections,
+      riskLevel: this.riskLevel,
+      riskLabel: this.riskLabel,
+      riskMessage: this.riskMessage,
+      previewDataUrl: this.previewDataUrl,
+      previewType: this.previewType,
+      fileName: this.fileName
+    };
+    sessionStorage.setItem('reportData', JSON.stringify(payload));
   }
 
 }

@@ -1,9 +1,72 @@
-<div class="container">
-  <h2>Simplified Report</h2>
+<main class="result-page">
+  <section class="result-header">
+    <div>
+      <span class="eyebrow">Report complete</span>
+      <h1>Simplified Report</h1>
+      <p class="subtitle">Uploaded document preview on the left, simplified result on the right.</p>
+    </div>
+    <button class="secondary-btn" (click)="goBack()">Upload another report</button>
+  </section>
 
-  <pre style="white-space: pre-wrap;">
-{{ report }}
-  </pre>
+  <div class="result-grid">
+    <section class="panel-card preview-panel">
+      <div class="panel-header">
+        <div>
+          <p class="panel-title">Uploaded content</p>
+          <span class="panel-subtitle">{{ fileName || 'Uploaded file' }}</span>
+        </div>
+      </div>
 
-  <button routerLink="/">Upload Another Report</button>
-</div>
+      <div class="preview-holder">
+        <ng-container [ngSwitch]="previewType">
+          <img *ngSwitchCase="'image'" [src]="previewDataUrl" alt="Uploaded preview" />
+          <iframe *ngSwitchCase="'pdf'" [src]="previewUrl" title="Uploaded PDF preview"></iframe>
+          <div *ngSwitchDefault class="preview-empty">
+            <p>No preview available for this file.</p>
+            <p>Open the uploaded document directly from your device if needed.</p>
+          </div>
+        </ng-container>
+      </div>
+    </section>
+
+    <section class="panel-card summary-panel">
+      <div class="panel-header summary-header">
+        <div>
+          <p class="panel-title">Simplified report</p>
+          <span class="panel-subtitle">Ready to review and download</span>
+        </div>
+        <button class="primary-btn" (click)="downloadCurrentViewPdf()">Download report</button>
+      </div>
+
+      <div class="summary-topline">
+        <div>
+          <p class="summary-page-title">Easy-to-Understand Report</p>
+          <p class="summary-page-copy">Quickly review the key findings, risk summary, and questions to discuss with your doctor.</p>
+        </div>
+      </div>
+
+      <div class="risk-alert" [ngClass]="riskLevel" *ngIf="riskLabel">
+        <div class="risk-badge">{{ riskLabel }}</div>
+        <p>{{ riskMessage }}</p>
+      </div>
+
+      <div class="summary-content">
+        <div *ngIf="reportSections.length > 0; else rawOutput" class="summary-grid">
+          <article class="section-card" [ngClass]="sectionTone(section.title)" *ngFor="let section of reportSections">
+            <h2>{{ section.title }}</h2>
+            <div *ngFor="let para of section.paragraphs">
+              <p>{{ para }}</p>
+            </div>
+            <ul *ngIf="section.bullets?.length > 0">
+              <li *ngFor="let bullet of section.bullets">{{ bullet }}</li>
+            </ul>
+          </article>
+        </div>
+
+        <ng-template #rawOutput>
+          <pre class="result-text">{{ simplifiedText || 'Your simplified report will appear here after upload.' }}</pre>
+        </ng-template>
+      </div>
+    </section>
+  </div>
+</main>
