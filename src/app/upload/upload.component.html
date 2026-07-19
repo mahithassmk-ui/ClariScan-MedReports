@@ -1,65 +1,42 @@
-<main class="page">
- 
-  <section class="hero">
-    <h1>Medical Reports, Simplified for You.</h1>
-    <p>Clarity Before Consultation</p>
+<main class="page-content">
+  <section class="hero-section">
+    <div class="hero-copy">
+      <span class="eyebrow">Welcome back</span>
+      <h2>Clarity before <span>Consultation.</span></h2>
+      <p>Don't stress over complex radiology and lab results. Upload your report now to get a simplified summary, clear insights, and personalized questions to bring to your next appointment.
+    </div>
   </section>
 
-  <section class="toolbar">
-    <label class="file-picker">
-      <input type="file" (change)="onFileSelected($event)" />
-      <span>{{ fileName || 'Choose PDF or image' }}</span>
-    </label>
+  <section class="start-section">
+    <div class="section-header">
+      <div>
+        <span class="section-eyebrow">Start here</span>
+        <h3>Add a new report</h3>
+      </div>
+    </div>
 
-    <button class="primary-btn" (click)="submitReport()" [disabled]="loading || !selectedFile">
-      {{ loading ? 'Processing...' : 'Generate Simplified Report' }}
-    </button>
-  </section>
-
-  <p *ngIf="loading" class="status">Reading report and generating simplified summary...</p>
-
-  <section class="workspace">
-    <article class="panel preview-panel">
-      <h2>Original File Preview</h2>
-      <div class="preview-body" *ngIf="selectedFile; else noPreview">
-        <img *ngIf="previewType === 'image'" [src]="previewUrl" alt="Uploaded report preview" />
-        <iframe *ngIf="previewType === 'pdf'" [src]="previewUrl" title="PDF Preview"></iframe>
-        <div *ngIf="previewType === 'none'" class="preview-placeholder">
-          Preview is supported for PDF and image files.
+    <div class="start-grid">
+      <label class="upload-box">
+        <input type="file" accept=".pdf,image/*" (change)="onFileSelected($event)" />
+        <div class="upload-icon">↥</div>
+        <div class="upload-text">
+          <strong>Upload your report</strong>
+          <span>PDF, PNG, or JPG · up to 20 MB</span>
         </div>
-      </div>
-      <ng-template #noPreview>
-        <div class="preview-placeholder">Upload a report to preview it here.</div>
-      </ng-template>
-    </article>
+        <div class="upload-selected">{{ fileName || 'No file selected' }}</div>
+      </label>
 
-    <article class="panel report-panel">
-      <h2>{{ reportTitle || 'Simplified Report' }}</h2>
-
-      <div class="risk-alert" *ngIf="simplifiedText.trim()" [ngClass]="'risk-' + riskLevel">
-        <div class="risk-label">{{ riskLabel }}</div>
-        <div class="risk-message">{{ riskMessage }}</div>
-      </div>
-
-      <div *ngIf="reportSections.length > 0; else rawOutput" class="sections-grid">
-        <section class="section-card" [ngClass]="sectionTone(section.title)" *ngFor="let section of reportSections">
-          <h3>{{ section.title }}</h3>
-          <p *ngFor="let para of section.paragraphs">{{ para }}</p>
-          <ul *ngIf="section.bullets.length > 0">
-            <li *ngFor="let bullet of section.bullets">{{ bullet }}</li>
-          </ul>
-        </section>
-      </div>
-
-      <ng-template #rawOutput>
-        <pre class="result-text">{{ simplifiedText || 'Your simplified report will appear here after upload.' }}</pre>
-      </ng-template>
-
-      <div class="download-bar">
-        <button class="download-btn" (click)="downloadCurrentViewPdf()" [disabled]="!simplifiedText.trim()">
-          Download Current View as PDF
+      <div class="type-box">
+        <div class="question">What kind of report is this?</div>
+        <div class="type-options">
+          <button class="type-option active" type="button">Radiology / Scan</button>
+          <button class="type-option" type="button">Lab results</button>
+        </div>
+        <button class="primary-btn" (click)="submitReport()" [disabled]="loading || !selectedFile">
+          {{ loading ? 'Processing...' : 'Explain my report →' }}
         </button>
       </div>
-    </article>
+    </div>
   </section>
+
 </main>
