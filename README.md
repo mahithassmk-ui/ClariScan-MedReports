@@ -26,28 +26,30 @@ Users can upload radiology reports in PDF or image format. The application extra
 1. Node.js v20+ and npm installed
 2. Python version 3.10+
 3. Tesseract OCR installed
-   _[Replace the Tesseract path with the existing one with your resseract path once installed in main.py file]_
+   _[Replace the existing Tesseract path in `main.py` with the path to your local Tesseract installation after installing Tesseract OCR.]
+]_
 4. Ollama
    
 # Backend Setup
 ### 1.Installed Dependencies
-pip install -r requirements.txt [make sure you are inside backend folder. dont forget to do cd backend]
-3. Start ollama server :
-    a. make sure you are inside ollama repository
-    b. Run command : .\ollama.exe pull llama3.2:1b
-    c. Run command : .\ollama.exe serve
-    d. Verify if the ollama is running using the command : .\ollama.exe list
+`pip install -r requirements.txt` [make sure you are inside backend folder. dont forget to do `cd backend`]
 
- 4.To run the backend : __[ make sure you are inside backend folder. dont forget to do cd backend]
-   Run command:  python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000. _[The API will be available at http://localhost:8000]_
+### 2. Start ollama server :
+  Make sure you are inside ollama repository
+  Run command : `.\ollama.exe pull llama3.2:1b`
+  Run command : `.\ollama.exe serve`
+  Verify if the ollama is running using the command : `.\ollama.exe list`
+
+### 3.To run the backend : __[ make sure you are inside backend folder. dont forget to do `cd backend`]
+   Run command:  `python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000`. _[The API will be available at http://localhost:8000]_
 
 # Frontend Setup
 
 ### Install dependencies
-npm install
+`npm install`
 
 ### To run the application
-ng serve
+`ng serve`
 
 ###Note 
 Make sure you run Backend commands and Frontend commands in seperate terminals
