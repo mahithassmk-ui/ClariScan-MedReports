@@ -54,7 +54,7 @@ Users can upload radiology reports in PDF or image format. The application extra
 ### To run the application
 `ng serve`
 
-###Note 
+### Note 
 Make sure you run Backend commands and Frontend commands in seperate terminals
 
 # Limitations
