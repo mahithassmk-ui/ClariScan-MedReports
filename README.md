@@ -55,7 +55,9 @@ Users can upload radiology reports in PDF or image format. The application extra
 `ng serve`
 
 ### Note 
-Make sure you run Backend commands and Frontend commands in seperate terminals
+Make sure you run Backend commands and Frontend commands in seperate terminals.
+
+You can use the file `sample-radiology report ` to test our application
 
 # Limitations
 OCR quality depends on the scan clarity , handwritten texts may be inaccurate.Please make sure that the uploaded PDF or image of radiology reports is a clear image and not a blurred image.
